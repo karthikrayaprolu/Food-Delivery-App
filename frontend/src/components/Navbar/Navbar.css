@@ -1,15 +1,16 @@
-.navbar{
+.navbar {
     padding: 20px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.navbar .logo{
-    width: 150px;
+.navbar .logo {
+    width: 300px;
+    margin-top: 10px;
 }
 
-.navbar-menu{
+.navbar-menu {
     display: flex;
     list-style: none;
     gap: 20px;
@@ -17,14 +18,14 @@
     font-size: 18px;
 }
 
-.navbar-right{
+.navbar-right {
     display: flex;
     align-items: center;
     gap: 40px;
 }
 
-.navbar button{
-    background:transparent;
+.navbar button {
+    background: transparent;
     font-size: 16px;
     color: #49557e;
     border: 1px solid tomato;
@@ -34,25 +35,44 @@
     transition: 0.3s;
 }
 
-.navbar button:hover{
+.navbar button:hover {
     background-color: #fff4f2;
 }
 
-.navbar .active{
-    padding-bottom: 2px ;
+.navbar .active {
+    padding-bottom: 2px;
     border-bottom: 2px solid #49557e;
 }
 
-.navbar li{
+.navbar li {
     cursor: pointer;
 }
 
-.navbar-search-icon{
+.navbar-search {
     position: relative;
-
 }
 
-.navbar-search-icon .dot{
+.navbar-search .search-input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px; /* Rounded corners for the input */
+    width: 200px; /* Width of the search input */
+    transition: width 0.3s ease; /* Animation for expanding the search input */
+    display: none; /* Hidden by default */
+}
+
+.navbar-search .search-input.active {
+    display: block; /* Show when search is visible */
+}
+
+.navbar-search .search-icon {
+    cursor: pointer;
+    width: 25px; /* Size of the search icon */
+    margin-left: 10px; /* Space between input and icon */
+}
+
+/* Dot indicator for cart */
+.navbar-search-icon .dot {
     position: absolute;
     min-width: 10px;
     min-height: 10px;
@@ -61,6 +81,7 @@
     top: -8px;
     right: -8px;
 }
+
 /* Base styles for navbar */
 .navbar {
     display: flex;
@@ -150,18 +171,18 @@
     }
 }
 
-.navbar-profile{
+.navbar-profile {
     position: relative;
 }
 
-.navbar-profile-dropdown{
+.navbar-profile-dropdown {
     position: absolute;
     display: none;
     right: 0;
     z-index: 1;
 }
 
-.navbar-profile:hover .navbar-profile-dropdown{
+.navbar-profile:hover .navbar-profile-dropdown {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -173,17 +194,17 @@
     list-style: none;
 }
 
-.navbar-profile-dropdown li{
+.navbar-profile-dropdown li {
     display: flex;
     align-items: center;
     cursor: pointer;
     gap: 10px;
 }
 
-.navbar-profile-dropdown img{
+.navbar-profile-dropdown img {
     width: 20px;
 }
 
-.navbar-profile-dropdown li:hover{
+.navbar-profile-dropdown li:hover {
     color: tomato;
 }

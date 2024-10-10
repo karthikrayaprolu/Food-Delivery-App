@@ -1,10 +1,10 @@
-.order-item{
-    display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
-    align-items: start;
+.order-item {
+    display: flex; /* Use flexbox for side-by-side alignment */
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Distribute space between items */
     font-size: 14px;
-    gap: 30px;
-    margin: 30px 0px;
+    gap: 20px; /* Adjust gap between elements */
+    margin: 30px 0;
     padding: 20px;
     border: 1px solid tomato;
     border-radius: 5px;
@@ -12,39 +12,57 @@
     color: #505050;
 }
 
-.order-item-food, .order-item-name{
+.order-item img {
+    width: 50px;
+    height: 50px;
+}
+
+.order-item-details {
+    display: flex;
+    flex-direction: column; /* Stack the food name and address vertically */
+    flex-grow: 2; /* Allow this section to grow and take more space */
+}
+
+.order-item-food {
     font-weight: 600;
+    white-space: nowrap;
 }
 
-.order-item-name{
-    margin-top: 30px;
-    margin-bottom: 5px ;
+.order-item-address {
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Truncate if the address is too long */
 }
 
-.order-item-address{
-    margin-bottom: 10px;
+.order-item p, .order-item select {
+    margin: 0; /* Remove unnecessary margins */
 }
 
-.order-item select{
+.order-item-price, .order-item-count, .order-item-status {
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.order-item select {
     background-color: #ffe8e4;
-    border:1px solid tomato;
-    width: max(10vw,120px);
+    border: 1px solid tomato;
     padding: 10px;
     outline: none;
+    min-width: 120px;
 }
 
-@media (max-width:1000px) {
-    .order-item{
+@media (max-width: 1000px) {
+    .order-item {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: flex-start; /* Align items to the left */
         font-size: 12px;
-        grid-template-columns: 0.5fr 2fr 1fr;
-        padding: 15px 8px;
+    }
 
-    }
-    .order-item select{
+    .order-item select {
         padding: 5px;
-        font-size:12px;
+        font-size: 12px;
     }
-    .order-item img{
+
+    .order-item img {
         width: 40px;
     }
 }

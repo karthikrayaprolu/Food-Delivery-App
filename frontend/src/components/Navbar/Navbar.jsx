@@ -1,12 +1,14 @@
 import React, { useContext, useState } from "react";
 import "./Navbar.css";
-import { assets } from "../../assets/assets"; // Correct path to assets
+import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+  const [searchVisible, setSearchVisible] = useState(false); // For toggling the search bar visibility
+  const [searchTerm, setSearchTerm] = useState(""); // For managing the search input
   const navigate = useNavigate();
 
   const logout = () => {
@@ -15,28 +17,91 @@ const Navbar = ({ setShowLogin }) => {
     navigate("/");
   };
 
+  const handleScroll = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  // Handle search input change
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // Trigger search action when pressing the search icon
+  const handleSearch = () => {
+    if (searchTerm) {
+      navigate(`/search?query=${searchTerm}`);
+    }
+  };
+
   return (
     <div className="navbar">
       <Link to="/">
         <img src={assets.logo} alt="logo" className="logo" />
       </Link>
       <ul className="navbar-menu">
-        <Link to="/" onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>
+        <Link
+          to="/"
+          onClick={() => setMenu("home")}
+          className={menu === "home" ? "active" : ""}
+        >
           Home
         </Link>
-        <Link to="#explore-menu" onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>
+        <a
+          href="#food-display"
+          onClick={() => {
+            setMenu("menu");
+            handleScroll("food-display");
+          }}
+          className={menu === "menu" ? "active" : ""}
+        >
           Menu
-        </Link>
-        <Link to="#app-download" onClick={() => setMenu("mobile-app")} className={menu === "mobile-app" ? "active" : ""}>
+        </a>
+        <a
+          href="#app-download"
+          onClick={() => {
+            setMenu("mobile-app");
+            handleScroll("app-download");
+          }}
+          className={menu === "mobile-app" ? "active" : ""}
+        >
           Mobile App
-        </Link>
-        <Link to="#footer" onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>
+        </a>
+        <a
+          href="#footer"
+          onClick={() => {
+            setMenu("contact-us");
+            handleScroll("footer");
+          }}
+          className={menu === "contact-us" ? "active" : ""}
+        >
           Contact Us
-        </Link>
+        </a>
       </ul>
       <div className="navbar-right">
-        <img src={assets.search_icon} alt="search icon" />
-        <div className="navbar-search-icon">
+        <div className="navbar-search">
+          {/* Search input field */}
+          {searchVisible && (
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Search for food..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              onKeyPress={(e) => e.key === "Enter" && handleSearch()} // Trigger search on Enter key
+            />
+          )}
+          {/* Search icon */}
+          <img
+            src={assets.search_icon}
+            alt="search icon"
+            className="search-icon"
+            onClick={() => setSearchVisible(!searchVisible)} // Toggle search bar visibility
+          />
+        </div>
+        <div className="navbar-cart-icon">
           <Link to="/cart">
             <img src={assets.basket_icon} alt="basket icon" />
           </Link>
@@ -48,7 +113,7 @@ const Navbar = ({ setShowLogin }) => {
           <div className="navbar-profile">
             <img src={assets.profile_icon} alt="" />
             <ul className="navbar-profile-dropdown">
-              <li onClick={()=>navigate('/myorders')}>
+              <li onClick={() => navigate("/myorders")}>
                 <img src={assets.bag_icon} alt="" />
                 <p>Orders</p>
               </li>

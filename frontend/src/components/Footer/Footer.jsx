@@ -11,7 +11,8 @@ const Footer = () => {
                 <div className="footer-social-icons">
                     <img src={assets.facebook_icon} alt="" />
                     <img src={assets.twitter_icon} alt="" />
-                    <img src={assets.linkedin_icon} alt="" />
+                    <a href="https://www.linkedin.com/in/karthikrayaprolu?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app "><img  src={assets.linkedin_icon} alt="" /></a>
+                    
                 </div>
             </div>
             <div className="footer-content-center">
@@ -26,15 +27,15 @@ const Footer = () => {
             <div className="footer-content-right">
                 <h2>Get in Touch</h2>
                 <ul>
-                    <li>+91 9090909090</li>
-                    <li>tomato@gmail.com</li>
+                    <li>+91 9618830864</li>
+                    <li>abhiruchulu@gmail.com</li>
                 </ul>
 
             </div>
         </div>
         <hr />
         <p className="footer-copyright">
-            &copy; 2022 Tomato. All rights reserved.
+            &copy; 2022 Abhiruchulu. All rights reserved.
         </p>
 
     </div>

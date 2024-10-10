@@ -47,7 +47,7 @@ const Orders = ({url}) => {
           return (
             <div className="order-item" key={index}>
               <img src={assets.parcel_icon} alt="" />
-              <div>
+              <div className="order-item-details">
                 <p className="order-item-food">
                   {order.items.map((item, index) => {
                     if (index === order.items.length - 1) {
@@ -58,23 +58,28 @@ const Orders = ({url}) => {
                   })}
                 </p>
                 <div className="order-item-address">
-                  <p>{order.address.street+","}</p>
-                  <p>{order.address.city+", "+order.address.state+", "+order.address.country+", "+order.address.zipcode}</p>
+                  <p>{order.address.street}, {order.address.city}</p>
+                  <p>{order.address.state}, {order.address.country}, {order.address.zipcode}</p>
                 </div>
-                <p>Items: {order.items.length}</p>
-                <p>${order.amount}.00</p>
-                <select onChange={(event)=>statusHandler(event,order._id)}value={order.status}>
-                  <option value="Food Proceesing">Food Proceesing</option>
-                  <option value="Out for Delivery">Out for Delivery</option>
-                  <option value="Delivered">Delivered</option>
-                </select>
               </div>
+              <p className="order-item-count">Items: {order.items.length}</p>
+              <p className="order-item-price"><b>${order.amount}.00</b></p>
+              <select
+                className="order-item-status"
+                onChange={(event) => statusHandler(event, order._id)}
+                value={order.status}
+              >
+                <option value="Food Processing">Food Processing</option>
+                <option value="Out for Delivery">Out for Delivery</option>
+                <option value="Delivered">Delivered</option>
+              </select>
             </div>
           );
         })}
       </div>
     </div>
   );
+  
   
 }
 
