@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,7 +9,13 @@ const Navbar = ({ setShowLogin }) => {
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
   const [searchVisible, setSearchVisible] = useState(false); // For toggling the search bar visibility
   const [searchTerm, setSearchTerm] = useState(""); // For managing the search input
+  const [cartAmount, setCartAmount] = useState(getTotalCartAmount()); // Local state for cart amount
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Update local state whenever the cart amount changes
+    setCartAmount(getTotalCartAmount());
+  }, [getTotalCartAmount]);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -105,7 +111,7 @@ const Navbar = ({ setShowLogin }) => {
           <Link to="/cart">
             <img src={assets.basket_icon} alt="basket icon" />
           </Link>
-          <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
+          <div className={cartAmount === 0 ? "" : "dot"}></div>
         </div>
         {!token ? (
           <button onClick={() => setShowLogin(true)}>Sign In</button>

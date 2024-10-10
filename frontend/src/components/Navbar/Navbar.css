@@ -72,12 +72,16 @@
 }
 
 /* Dot indicator for cart */
-.navbar-search-icon .dot {
+.navbar-cart-icon {
+    position: relative;
+}
+
+.navbar-cart-icon .dot {
     position: absolute;
     min-width: 10px;
     min-height: 10px;
     background-color: tomato;
-    border-radius: 5px;
+    border-radius: 50%;
     top: -8px;
     right: -8px;
 }
