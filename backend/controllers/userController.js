@@ -1,6 +1,6 @@
 import userModel from "../models/userModel.js";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs"; // Change from 'bcrypt' to 'bcryptjs'
 import validator from "validator";
 
 // login user
@@ -25,8 +25,7 @@ const loginUser = async (req, res) => {
         return res.json({ success: true, message: "Login successful", token });
     } catch (error) {
         console.log(error);
-        res.json({success:false,message:"Error"})
-
+        res.json({ success: false, message: "Error" });
     }
 };
 
@@ -46,7 +45,7 @@ const registerUser = async (req, res) => {
 
     try {
         // Check if user already exists
-        const exists = await userModel.findOne({ email }); // Fixed the typo here
+        const exists = await userModel.findOne({ email });
         if (exists) {
             return res.json({ success: false, message: "User already exists" });
         }
